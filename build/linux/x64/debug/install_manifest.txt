@@ -1,0 +1,17 @@
+/home/aswin/@programming/@vscode/@flutter/weatherapp1/build/linux/x64/debug/bundle/weatherapp1
+/home/aswin/@programming/@vscode/@flutter/weatherapp1/build/linux/x64/debug/bundle/data/icudtl.dat
+/home/aswin/@programming/@vscode/@flutter/weatherapp1/build/linux/x64/debug/bundle/lib/libflutter_linux_gtk.so
+/home/aswin/@programming/@vscode/@flutter/weatherapp1/build/linux/x64/debug/bundle/data/flutter_assets/assets/rainy.json
+/home/aswin/@programming/@vscode/@flutter/weatherapp1/build/linux/x64/debug/bundle/data/flutter_assets/assets/sunny.json
+/home/aswin/@programming/@vscode/@flutter/weatherapp1/build/linux/x64/debug/bundle/data/flutter_assets/assets/cloudy.json
+/home/aswin/@programming/@vscode/@flutter/weatherapp1/build/linux/x64/debug/bundle/data/flutter_assets/assets/thunder.json
+/home/aswin/@programming/@vscode/@flutter/weatherapp1/build/linux/x64/debug/bundle/data/flutter_assets/FontManifest.json
+/home/aswin/@programming/@vscode/@flutter/weatherapp1/build/linux/x64/debug/bundle/data/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf
+/home/aswin/@programming/@vscode/@flutter/weatherapp1/build/linux/x64/debug/bundle/data/flutter_assets/AssetManifest.json
+/home/aswin/@programming/@vscode/@flutter/weatherapp1/build/linux/x64/debug/bundle/data/flutter_assets/version.json
+/home/aswin/@programming/@vscode/@flutter/weatherapp1/build/linux/x64/debug/bundle/data/flutter_assets/kernel_blob.bin
+/home/aswin/@programming/@vscode/@flutter/weatherapp1/build/linux/x64/debug/bundle/data/flutter_assets/fonts/MaterialIcons-Regular.otf
+/home/aswin/@programming/@vscode/@flutter/weatherapp1/build/linux/x64/debug/bundle/data/flutter_assets/AssetManifest.bin
+/home/aswin/@programming/@vscode/@flutter/weatherapp1/build/linux/x64/debug/bundle/data/flutter_assets/NOTICES.Z
+/home/aswin/@programming/@vscode/@flutter/weatherapp1/build/linux/x64/debug/bundle/data/flutter_assets/shaders/ink_sparkle.frag
+/home/aswin/@programming/@vscode/@flutter/weatherapp1/build/linux/x64/debug/bundle/data/flutter_assets/NativeAssetsManifest.json

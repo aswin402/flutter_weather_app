@@ -1,0 +1,71 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.weatherapp1">
+
+    <!-- Required permissions -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <!-- Only request background location if truly needed -->
+    
+    <!-- For Android 9+ network security -->
+    <application
+        android:label="Weather"
+        android:name="${applicationName}"
+        android:icon="@mipmap/launcher_icon"
+        android:usesCleartextTraffic="true"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:requestLegacyExternalStorage="true">
+        
+        <activity
+            android:name=".MainActivity"
+            android:exported="true"
+            android:launchMode="singleTop"
+            android:theme="@style/LaunchTheme"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+            android:hardwareAccelerated="true"
+            android:windowSoftInputMode="adjustResize"
+            android:screenOrientation="portrait">
+            
+            <meta-data
+                android:name="io.flutter.embedding.android.NormalTheme"
+                android:resource="@style/NormalTheme"/>
+            
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+            
+            <!-- Deep linking -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <category android:name="android.intent.category.BROWSABLE"/>
+                <data android:scheme="https" android:host="weatherapp.example.com"/>
+            </intent-filter>
+        </activity>
+
+        <!-- Add this if using Firebase or other plugins -->
+        <meta-data
+            android:name="flutterEmbedding"
+            android:value="2"/>
+            
+        <!-- For Google Maps if you add it later -->
+        <!-- <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="YOUR_API_KEY"/> -->
+    </application>
+
+    <!-- For Android 11+ package visibility -->
+    <queries>
+        <!-- For text processing -->
+        <intent>
+            <action android:name="android.intent.action.PROCESS_TEXT"/>
+            <data android:mimeType="text/plain"/>
+        </intent>
+        
+        <!-- For location providers -->
+        <package android:name="com.google.android.gms"/>
+        <package android:name="com.android.vending"/>
+    </queries>
+</manifest>
