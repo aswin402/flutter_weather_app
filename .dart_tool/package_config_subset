@@ -222,10 +222,6 @@ yaml
 3.4
 file:///home/aswin/.pub-cache/hosted/pub.dev/yaml-3.1.3/
 file:///home/aswin/.pub-cache/hosted/pub.dev/yaml-3.1.3/lib/
-weatherapp1
-3.8
-file:///home/aswin/@programming/@vscode/@flutter/weatherapp1/
-file:///home/aswin/@programming/@vscode/@flutter/weatherapp1/lib/
 sky_engine
 3.7
 file:///home/aswin/flutter/bin/cache/pkg/sky_engine/
@@ -242,4 +238,8 @@ flutter_web_plugins
 3.7
 file:///home/aswin/flutter/packages/flutter_web_plugins/
 file:///home/aswin/flutter/packages/flutter_web_plugins/lib/
+weatherapp1
+3.8
+file:///home/aswin/programming/vscode/flutter/weatherapp1/
+file:///home/aswin/programming/vscode/flutter/weatherapp1/lib/
 2

@@ -15,16 +15,12 @@ class WeatherServices {
 
   Future<WeatherModel> fetchWeather(double latitude, double longitude) async {
     try {
-      final url = Uri.https(
-        _baseUrl,
-        _path,
-        {
-          'latitude': latitude.toString(),
-          'longitude': longitude.toString(),
-          'current_weather': 'true',
-          'hourly': 'temperature_2m,relativehumidity_2m,windspeed_10m',
-        },
-      );
+      final url = Uri.https(_baseUrl, _path, {
+        'latitude': latitude.toString(),
+        'longitude': longitude.toString(),
+        'current_weather': 'true',
+        'hourly': 'temperature_2m,relativehumidity_2m,windspeed_10m',
+      });
 
       final response = await http.get(url).timeout(const Duration(seconds: 15));
 
@@ -63,14 +59,18 @@ class WeatherServices {
 
       try {
         return await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.best,
-          timeLimit: _locationTimeout,
+          locationSettings: const LocationSettings(
+            accuracy: LocationAccuracy.best,
+            timeLimit: _locationTimeout,
+          ),
         );
       } catch (e) {
         debugPrint('High accuracy location failed, trying low accuracy: $e');
         return await Geolocator.getCurrentPosition(
-          desiredAccuracy: LocationAccuracy.low,
-          timeLimit: _locationTimeout,
+          locationSettings: const LocationSettings(
+            accuracy: LocationAccuracy.low,
+            timeLimit: _locationTimeout,
+          ),
         );
       }
     } catch (e) {
@@ -94,7 +94,6 @@ class WeatherServices {
         if (osmCity != null && osmCity.isNotEmpty) {
           return osmCity;
         }
-
       } catch (e) {
         lastError = e.toString();
         debugPrint('Geocoding attempt ${retryCount + 1} failed: $e');
@@ -103,19 +102,25 @@ class WeatherServices {
       }
     }
 
-    debugPrint('All geocoding methods failed. Last error: ${lastError ?? "Unknown error"}');
+    debugPrint(
+      'All geocoding methods failed. Last error: ${lastError ?? "Unknown error"}',
+    );
     return _defaultLocationName;
   }
 
   Future<String?> _tryDeviceGeocoding(double lat, double lng) async {
     try {
-      final placemarks = await placemarkFromCoordinates(lat, lng)
-          .timeout(_geocodingTimeout);
+      final placemarks = await placemarkFromCoordinates(
+        lat,
+        lng,
+      ).timeout(_geocodingTimeout);
 
       if (placemarks.isNotEmpty) {
         final place = placemarks.first;
-        debugPrint('Device geocoding result: ${_placemarkToDebugString(place)}');
-        
+        debugPrint(
+          'Device geocoding result: ${_placemarkToDebugString(place)}',
+        );
+
         final locationName = _extractBestLocationName(
           place.locality,
           place.subLocality,
@@ -124,7 +129,7 @@ class WeatherServices {
           place.country,
           place.isoCountryCode,
         );
-        
+
         if (locationName != null) {
           return locationName;
         }
@@ -139,11 +144,11 @@ class WeatherServices {
 
   String _placemarkToDebugString(Placemark place) {
     return 'Locality: ${place.locality}, '
-           'SubLocality: ${place.subLocality}, '
-           'SubAdminArea: ${place.subAdministrativeArea}, '
-           'AdminArea: ${place.administrativeArea}, '
-           'Country: ${place.country}, '
-           'CountryCode: ${place.isoCountryCode}';
+        'SubLocality: ${place.subLocality}, '
+        'SubAdminArea: ${place.subAdministrativeArea}, '
+        'AdminArea: ${place.administrativeArea}, '
+        'Country: ${place.country}, '
+        'CountryCode: ${place.isoCountryCode}';
   }
 
   String? _extractBestLocationName(
@@ -154,41 +159,46 @@ class WeatherServices {
     String? country,
     String? countryCode,
   ) {
-    final name = locality?.trim() ??
-                subLocality?.trim() ??
-                subAdminArea?.trim() ??
-                adminArea?.trim() ??
-                country?.trim();
-              
+    final name =
+        locality?.trim() ??
+        subLocality?.trim() ??
+        subAdminArea?.trim() ??
+        adminArea?.trim() ??
+        country?.trim();
+
     if (name != null && name.isNotEmpty) {
       return name;
     }
-    
+
     if (countryCode != null) {
       return countryCode.toUpperCase();
     }
-    
+
     return null;
   }
 
   Future<String?> _tryOpenStreetMap(double lat, double lng) async {
     try {
-      final response = await http.get(
-        Uri.parse('https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=$lat&lon=$lng&zoom=10&addressdetails=1')
-      ).timeout(_geocodingTimeout);
+      final response = await http
+          .get(
+            Uri.parse(
+              'https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=$lat&lon=$lng&zoom=10&addressdetails=1',
+            ),
+          )
+          .timeout(_geocodingTimeout);
 
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
         debugPrint('OSM geocoding result: ${data['address']}');
-        
+
         final address = data['address'];
         if (address is Map) {
           return address['city']?.toString() ??
-                 address['town']?.toString() ??
-                 address['village']?.toString() ??
-                 address['county']?.toString() ??
-                 address['state']?.toString() ??
-                 address['country']?.toString();
+              address['town']?.toString() ??
+              address['village']?.toString() ??
+              address['county']?.toString() ??
+              address['state']?.toString() ??
+              address['country']?.toString();
         }
       } else {
         throw Exception('OSM API returned ${response.statusCode}');
