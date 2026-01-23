@@ -11,7 +11,7 @@ A beautiful, clean, and minimalist weather application built with Flutter. This 
 - Clean typography with proper visual hierarchy
 
 ## image
-[image](screenshots/image.png)
+![image](screenshots/image.png)
 
 
 ### 🌈 **Beautiful Animations**
