@@ -10,6 +10,10 @@ A beautiful, clean, and minimalist weather application built with Flutter. This 
 - Day/night mode with automatic color switching
 - Clean typography with proper visual hierarchy
 
+## image
+[image](screenshots/image.png)
+
+
 ### 🌈 **Beautiful Animations**
 - Smooth fade-in and slide-up animations
 - Lottie animations for weather conditions
